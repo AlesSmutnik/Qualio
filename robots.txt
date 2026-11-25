@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# ChatGPT search discovery
+User-agent: OAI-SearchBot
+Allow: /

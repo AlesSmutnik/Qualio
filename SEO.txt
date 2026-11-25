@@ -1,0 +1,108 @@
+SEO — qualio.cz
+Stav: implementováno ve zdrojových souborech, 23. 11. 2026.
+Značka: QUALIO (ponechána podle současného obsahu).
+Hlavní adresa: https://qualio.cz/
+Jazyk: čeština. Anglická verze neexistuje, proto není vložen hreflang.
+
+ALOKACE TÉMAT A VYHLEDÁVACÍCH ZÁMĚRŮ
+Web má dvě indexovatelné stránky: / a /vyber-systemu-kvality.html. Fragmenty níže nejsou samostatné stránky ani samostatné položky sitemapy.
+
+/ — hlavní obchodní téma: software pro kontrolu kvality výroby.
+Vedlejší témata: systém řízení kvality, SaaS pro kontrolu kvality, evidence kontrol.
+Title: Software pro kontrolu kvality výroby | QUALIO
+Záměr: porozumět řešení a připravit poptávku ukázky.
+
+/#sluzby — zastřešující téma: řízení kvality výroby.
+/#kontrolni-plany — kontrolní plány, evidence měření, vstupní / mezioperační / výstupní kontrola.
+/#rizeni-neshod — řízení neshod, nápravná opatření, příčiny neshod.
+/#audity-kvality — přehledy kvality, dohledatelnost kontrol, podklady pro audit.
+Záměr těchto bloků: vysvětlit postupy a ukázat oblasti využití; odkazy vedou k přípravě poptávky.
+
+/#reference — modelové využití kontroly kvality ve strojírenství, automotive a elektronice.
+Příklady jsou výslovně modelové, nejde o skutečné zákaznické reference.
+/#o-nas — koncept platformy QUALIO, srozumitelnost a dohledatelnost.
+/#otazky — informační dotazy: co je software pro kontrolu kvality, kontrolní plán vs. záznam měření, software vs. certifikace, dostupnost objednávky.
+/#kontakt — konverzní záměr: ukázka platformy a příprava poptávky.
+
+Tato alokace vychází z obsahu a záměru návštěvníka. Nejde o výzkum hledanosti ani konkurenční analýzu; žádné objemy hledání ani odhady pozic nebyly vymyšleny.
+Po získání skutečných produktových údajů lze rozšířit tři hlavní témata do samostatných obsahově odlišných stránek. Nyní nevznikají prázdné ani duplicitní landing pages.
+
+IMPLEMENTOVANÉ TECHNICKÉ SEO
+- Centrální konfigurace seo.config.json: doména, značka, title, description, indexace, ověřovací kódy.
+- Statická metadata v index.html a vyber-systemu-kvality.html, čitelná bez JavaScriptu. Generátor je obnovuje z konfigurace.
+- Self-referencing canonical na https://qualio.cz/; parametry nesměrují na samostatný canonical.
+- Open Graph a Twitter metadata, české locale, obrázek a jeho rozměry i alternativní text.
+- JSON-LD WebSite a WebPage se společnými identifikátory a pravdivým popisem ukázkového konceptu.
+- Žádná smyšlená Organization, hodnocení, ceny, zákazníci, certifikace ani dostupnost skutečného produktu.
+- Jedno H1, sémantické sekce, konkrétní mezititulky, odkazy a viditelný odborný obsah.
+- Všechny tematické popisy jsou v HTML; nejsou dostupné jen po kliknutí na JavaScriptové záložky.
+- Viditelné otázky a odpovědi; bez příslibu FAQ rich results.
+- robots.txt dovoluje crawling. Produkční soubor uvádí sitemap.xml.
+- Sitemap obsahuje dvě skutečné canonical stránky, bez fragmentů a bez neověřeného lastmod.
+- Node server přesměrovává /index.html na / stavem 301 a vrací skutečnou 404 pro neznámé adresy.
+- Náhled: noindex v HTML i HTTP hlavičce; crawling není blokovaný, aby robot mohl noindex přečíst.
+- Demo dashboardy mají data-nosnippet, aby modelová čísla netvořila úryvek výsledku vyhledávání.
+- Lokální systémové fonty, odložený JavaScript, žádné externí knihovny nebo fontové požadavky.
+- Hlavní obrázek: JPEG přibližně 197 kB místo PNG 2,2 MB; width a height proti posunu rozvržení; fetchpriority=high.
+- Responsivní CSS, přístupné ovládání klávesnicí, omezení animací při prefers-reduced-motion.
+- ETag a podmíněné načítání; HTML se revaliduje, zdroje mají krátkou cache s revalidací.
+- Server zveřejňuje jen webové soubory, nikoli konfiguraci, testy nebo návrhové podklady.
+
+PŘÍKAZY
+npm run seo:prepare — přegeneruje metadata v index.html, stránku vyber-systemu-kvality.html, robots.txt a sitemap.xml pro aktuální konfiguraci.
+npm run check — kontrola syntaxe.
+npm test — automatické SEO a HTTP testy.
+npm start — lokální náhled na http://localhost:3000/ s noindex.
+npm run serve:production — Node server s produkční indexací na localhost:3000, pro nasazení za HTTPS reverse proxy.
+
+NASAZENÍ
+Pro statický hosting nahrát index.html, vyber-systemu-kvality.html, style.css, app.js, robots.txt, sitemap.xml a assets/favicon.svg + assets/inspection.jpg.
+Před nasazením po změně konfigurace spustit npm run seo:prepare.
+Statický hosting musí samostatně nastavit 301 z /index.html na /, skutečnou 404 pro neznámé URL, HTTPS a jednotnou doménu bez www. Tyto směrovací funkce jsou implementované v přiloženém Node serveru; prosté nahrání HTML pravidla hostingu nezmění.
+Nepublikovat zdrojové konfigurace, testy, design/ ani původní PNG. Obsah stránky nadále transparentně označuje projekt jako demo.
+
+CO ZBÝVÁ NA VEŘEJNÉ DOMÉNĚ
+Veřejné nasazení, DNS, certifikát, přesměrování www/HTTP a stav živé domény nebyly tímto úkolem změněny ani ověřeny.
+Po nasazení:
+1. Ověřit skutečného provozovatele, obchodní kontakt, funkce produktu a dostupnost služby; potom nahradit demo údaje pravdivými informacemi.
+2. Ověřit vlastnictví qualio.cz v Google Search Console a Bing Webmaster Tools. Kódy lze doplnit do seo.config.json; DNS ověření se provádí u správce domény.
+3. Odeslat https://qualio.cz/sitemap.xml a zkontrolovat hlavní URL nástrojem kontroly URL.
+4. Ověřit veřejnou canonical, robots, sitemapu, skutečné HTTP odpovědi a strukturovaná data.
+5. Změřit mobilní i desktopový Lighthouse / PageSpeed Insights a po nasbírání dat Core Web Vitals. Skóre ani terénní metriky nebyly v tomto prostředí naměřeny.
+6. Podle Search Console sledovat dotazy, zobrazení, kliknutí, CTR a indexaci. Měření konverzí vyžaduje volbu analytiky a skutečné odesílání poptávky; nynější formulář pouze lokálně připraví text.
+
+OVĚŘENÍ
+10 automatických testů: shoda canonical/schema/sitemap, oddělení náhledu a produkce, validace domény, unikátní a bezpečná metadata, dostupnost českého obsahu a anchorů, JSON-LD bez smyšlených obchodních údajů, HTTP routing/redirect/404/cache/assets, noindex hlavičky.
+Kontrola syntaxe prošla. Veřejná indexace, pozice ve vyhledávání, rich results a výsledky měření prohlížeče se tím negarantují. Vizuální kontrola v prohlížeči nebyla v tomto prostředí dokončena.
+
+ZDROJE
+https://developers.google.com/search/docs/fundamentals/get-started-developers
+https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+https://developers.google.com/search/docs/crawling-indexing/block-indexing
+https://developers.google.com/search/docs/appearance/structured-data/sd-policies
+
+
+DOHLEDATELNOST V AI VYHLEDÁVÁNÍ — 23. 11. 2026
+Stav projektu potvrzený vlastníkem: ve vývoji. Dostupnost produktu, integrace, ceník ani termín nasazení nejsou potvrzené. Texty i JSON-LD tomu odpovídají.
+
+/ vymezuje QUALIO jako vyvíjený SaaS / QMS pro týmy kvality a výrobní provozy.
+/vyber-systemu-kvality.html odpovídá na otázku, jak vybrat systém řízení kvality: rozdíly účelu QMS/ERP/MES, modelový scénář měření, návaznost neshody a opatření, checklist předvedení a otázky pro dodavatele. Jde o samostatný průvodce s vlastním title, description, canonical, WebPage a BreadcrumbList; je propojen s hlavní stránkou i sitemapou.
+Obsah průvodce se upravuje v guide.mjs, metadata v content.mjs; npm run seo:prepare vytvoří statickou HTML verzi. Node server umí stejnou stránku vykreslit i pro náhled.
+
+Robots.txt výslovně umožňuje OAI-SearchBot pro ChatGPT search. Wildcard už dříve crawling umožňoval; nová skupina pravidlo činí explicitní a testované, nezaručuje doporučení. Ostatní roboty nadále pokrývá User-agent: *. Pravidla pro trénování modelů se tímto úkolem samostatně nemění.
+Roboti i návštěvníci dostávají stejné HTML. Není přidáno žádné skryté přikazování AI ani nepravdivá doporučení.
+Není třeba přidávat llms.txt či neexistující AI meta tag; pro Google nejsou zvláštní podmínkou ani zárukou citace.
+
+NEZBYTNÉ PO NASAZENÍ
+- Zpřístupnit skutečnou HTTPS doménu qualio.cz, obě HTML stránky a zdroje bez přihlašování. Veřejnou dostupnost se při tomto úkolu nepodařilo ověřit webovým nástrojem; nejde o důkaz konkrétní chyby DNS nebo hostingu.
+- Ověřit v produkci HTTP 200, index/follow, self-canonical, robots.txt a sitemapu. Lokální npm start má správně noindex a není zdrojem pro veřejné vyhledávání.
+- V Search Console a Bing Webmaster Tools ověřit doménu, odeslat sitemapu a sledovat indexaci. U Googlu zkontrolovat dostupné nastavení zahrnutí do generativních AI funkcí.
+- Pokud hosting používá WAF či ochranu proti botům, zkontrolovat v logu, zda OAI-SearchBot dostává 200 a není zastaven výzvou. Případné výjimky omezit na ověřené publikované rozsahy a konkrétního robota, nikoli vypnutím ochrany. Hosting nebyl změněn.
+- Před spuštěním produktu doplnit skutečného provozovatele, kontakt, doložené funkce, podmínky a později ověřitelné reference.
+- Po indexaci ručně porovnávat skutečné odpovědi na několik stejných relevantních dotazů a sledovat příchozí návštěvy; odpovědi a zdroje se mohou měnit. Samotný referral nepokrývá všechny AI návštěvy.
+
+Žádné nastavení webu nemůže vynutit, aby každý model, každý uživatel či každá odpověď obsahovaly odkaz na qualio.cz. Změny připravují přístupný a srozumitelný zdroj, nikoli garantovanou distribuci.
+
+AKTUÁLNÍ OFICIÁLNÍ ZDROJE
+OpenAI Docs, rozdíl OAI-SearchBot vs. GPTBot: https://developers.openai.com/api/docs/bots
+Google, doporučení pro AI vyhledávání a vysvětlení llms.txt: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide

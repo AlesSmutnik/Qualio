@@ -1,0 +1,31 @@
+node_modules/
+.cache/
+.env
+.env.*
+!.env.example
+dist/
+
+# Přihlašovací údaje, soukromé klíče a lokální nastavení služeb
+.env*
+!.env.example
+.npmrc
+.netrc
+_netrc
+.pypirc
+.aws/
+.ssh/
+secrets/
+credentials/
+credentials*.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Lokální logy a soubory operačního systému
+*.log
+.DS_Store
+Thumbs.db

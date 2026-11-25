@@ -1,0 +1,50 @@
+JAK UPRAVOVAT WEB QUALIO
+
+index.html
+  Hlavní texty a obsah webu. Sekce jsou označené komentáři 01 až 05.
+  Obsah mezi SEO:START a SEO:END se automaticky vytváří z konfigurace.
+
+style.css
+  Vzhled webu. Nahoře jsou barvy a písmo, dále očíslované bloky pro jednotlivé části.
+  Responzivní pravidla pro notebooky a mobily jsou v sekcích 13 až 15.
+  Styly průvodce jsou v sekci 17.
+
+app.js
+  Ovládání motivu, mobilní menu, záložky a příprava poptávky.
+  Texty a modelová data přepínaných služeb jsou v poli services v sekci 03.
+  První záložka má také výchozí HTML obsah v index.html pro zobrazení bez JavaScriptu.
+
+seo.config.json
+  Doména, značka, titulek a popis hlavní stránky; ověřovací kódy pro vyhledávače.
+
+content.mjs
+  Adresa, titulek a popis průvodce výběrem systému.
+
+guide.mjs
+  Zdrojová HTML šablona a texty průvodce výběrem systému.
+  Soubor vyber-systemu-kvality.html je generovaný; trvalé změny provádějte v guide.mjs.
+
+seo.mjs
+  Generování metadat, strukturovaných dat, robots.txt a sitemapy.
+
+server.mjs
+  Lokální HTTP server, veřejné cesty, přesměrování a chybové odpovědi.
+
+scripts/prepare-seo.mjs
+  Obnovení SEO metadat a generovaných souborů včetně jejich formátování.
+
+tests/seo.test.mjs
+  Automatické ověření SEO a HTTP odpovědí.
+
+PŘÍKAZY (z této složky)
+  npm install             První instalace vývojového formátovače.
+  npm run format          Přehledně naformátuje HTML, CSS, JavaScript a konfiguraci.
+  npm run format:check    Zkontroluje formátování bez změn souborů.
+  npm run seo:prepare     Obnoví SEO blok, průvodce, robots.txt a sitemapu.
+  npm run check           Zkontroluje syntaxi JavaScriptu.
+  npm test                Spustí automatické testy.
+  npm start               Spustí lokální web na http://localhost:3000/.
+
+Konfigurace formátu je v .prettierrc.json. Odsazení používá dvě mezery.
+Soubor .editorconfig pomáhá zachovat stejné odsazení a UTF-8 i při ruční editaci.
+Node server nepoužívá formátovač za běhu; Prettier je pouze vývojová závislost.
